@@ -33,7 +33,7 @@ namespace prueba_tecnica_net.Controllers
             List<Bank> savedBanks = _dbContext.Banks.ToList();
 
             if (savedBanks.Count > 0)
-                return new { StatusCode = ResponseStatus.NotSaved, Message = "Ya existen datos de bancos en la base de datos, no se van a guardar más." };
+                return new { StatusCode = SavedStatus.NotSaved, Message = "Ya existen datos de bancos en la base de datos, no se van a guardar más." };
 
             List<Bank> banks = _eSettService.GetBanksData();
 
@@ -43,15 +43,30 @@ namespace prueba_tecnica_net.Controllers
                 {
                     _dbContext.Banks.AddRange(banks);
                     _dbContext.SaveChanges();
-                    return new { StatusCode = ResponseStatus.Saved, Message = "Se han guardado los datos de los bancos recibidos por la API en la base de datos." };
+                    return new { StatusCode = SavedStatus.Saved, Message = "Se han guardado los datos de los bancos recibidos por la API en la base de datos." };
                 }
                 catch (Exception)
                 {
-                    return new { StatusCode = ResponseStatus.Error, Message = "Ha ocurrido un error al guardar los bancos en la base de datos." };
+                    return new { StatusCode = SavedStatus.Error, Message = "Ha ocurrido un error al guardar los bancos en la base de datos." };
                 }
             }
 
-            return new { StatusCode = ResponseStatus.Empty, Message = "No hemos recibido datos de la API de eSett, no se ha guardado nada." };
+            return new { StatusCode = SavedStatus.Empty, Message = "No hemos recibido datos de la API de eSett, no se ha guardado nada." };
+        }
+
+        [HttpDelete(Name = "RemoveBanksFromDb")]
+        public object RemoveBanksFromDb()
+        {
+            IEnumerable<Bank> banks = _dbContext.Banks;
+
+            if (banks.Any())
+            {
+                _dbContext.Banks.RemoveRange(banks);
+                _dbContext.SaveChanges();
+                return new { StatusCode = DeletedStatus.Deleted, Message = "Se han borrado todos los bancos de la base de datos." };
+            }
+
+            return new { StatusCode = DeletedStatus.Empty, Message = "No se han borrado datos de la base de datos porque estaba vacía." };
         }
     }
 }

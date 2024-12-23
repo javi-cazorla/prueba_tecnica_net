@@ -9,9 +9,9 @@ public class Bank
     [MaxLength(75)]
     public string Name { get; set; } = default!;
 
-    [MaxLength(10)]
+    [MaxLength(15)]
     public string Bic { get; set; } = default!;
 
-    [MaxLength(2)]
+    [MaxLength(20)]
     public string Country { get; set; } = default!;
 }

@@ -1,6 +1,6 @@
 ﻿namespace prueba_tecnica_net.Enumerables;
 
-public enum ResponseStatus
+public enum SavedStatus
 {
     //Cuando se guarda correctamente en base de datos
     Saved,
