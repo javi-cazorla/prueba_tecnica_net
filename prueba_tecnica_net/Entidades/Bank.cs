@@ -7,11 +7,11 @@ public class Bank
     public int Id { get; set; }
 
     [MaxLength(75)]
-    string Name { get; set; } = default!;
+    public string Name { get; set; } = default!;
 
     [MaxLength(10)]
-    string Bic { get; set; } = default!;
+    public string Bic { get; set; } = default!;
 
     [MaxLength(2)]
-    string Country { get; set; } = default!;
+    public string Country { get; set; } = default!;
 }
