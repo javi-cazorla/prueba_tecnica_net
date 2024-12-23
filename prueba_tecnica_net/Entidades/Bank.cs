@@ -4,6 +4,8 @@ namespace prueba_tecnica_net.Entidades;
 
 public class Bank
 {
+    public int Id { get; set; }
+
     [MaxLength(75)]
     string Name { get; set; } = default!;
 
