@@ -8,7 +8,7 @@ namespace prueba_tecnica_net.Services
     {
         private readonly string _url = "https://api.opendata.esett.com/EXP06/Banks";
 
-        public List<Bank> GetBanksData()
+        public IEnumerable<Bank> GetBanksData()
         {
             var httpClient = new HttpClient();
 

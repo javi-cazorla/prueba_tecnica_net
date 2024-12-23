@@ -4,6 +4,6 @@ namespace prueba_tecnica_net.Interfaces
 {
     public interface IESettService
     {
-        public List<Bank> GetBanksData();
+        public IEnumerable<Bank> GetBanksData();
     }
 }
