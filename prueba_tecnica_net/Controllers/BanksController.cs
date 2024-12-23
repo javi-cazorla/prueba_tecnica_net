@@ -13,12 +13,10 @@ namespace prueba_tecnica_net.Controllers
     {
         private readonly IBankService _bankService;
         private readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<WeatherForecastController> _logger;
         private readonly ESettService _eSettService = new ESettService();
 
-        public BanksController(ILogger<WeatherForecastController> logger, ApplicationDbContext dbContext, IBankService bankService)
+        public BanksController(ApplicationDbContext dbContext, IBankService bankService)
         {
-            _logger = logger;
             _dbContext = dbContext;
             _bankService = bankService;
         }
